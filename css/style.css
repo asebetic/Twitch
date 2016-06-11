@@ -1,3 +1,17 @@
+
+@font-face {
+    font-family: 'Nexa Rust';
+    src: url('../fonts/NexaRustSans-Black.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -61,26 +75,14 @@ table {
     clear: both;
 }
 
-@font-face {
-    font-family: 'Nexa Rust';
-    src: url('../fonts/NexaRustSans-Black.otf');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Regular.ttf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-	min-height: 1100px;
+	min-height: 970px;
 	background: linear-gradient(to top right, #5674B9, #F26D7D) no-repeat;
+	overflow-x: hidden;
 }
 
-p {
-	font-family: 'Open Sans';
+.container {
+	padding-top: 60px;
 }
 
 .content {
@@ -88,18 +90,31 @@ p {
 	width: 1170px;
 }
 
+p {
+	font-family: 'Open Sans';
+}
+
 a {
 	text-decoration: none;
 }
 
-/* Header Style */
+/*********** 
+ Header Style 
+************/
+
+header {
+	height: 100px;
+}
 
 #logo {
 	display: block;
+	width: 550px;
 	margin: 0 auto;
 }
 
-/* Main Container */
+/************* 
+ Main Container 
+**************/
 
 .row {
 	display: flex;
@@ -114,6 +129,7 @@ a {
 	height: 410px;
 	position: relative;
 	margin: 20px 15px;
+	cursor: pointer;
 	background-color: white;
 	-webkit-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
@@ -126,14 +142,11 @@ a {
   box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
 }
 
-.col:nth-child(n+11) {
-	display: none;
-}
-
 .col img {
 	width: 100%;
 }
 
+/* Column content */
 .profile {
 	height: 120px;
 	padding: 25px;
@@ -144,43 +157,123 @@ a {
 	background-size: 300px;
 }
 
-#profile_logo {
+#profile-logo {
 	float: left;
 	width: 60px;
 	height: 60px;
 	border-radius: 50%;
 }
 
-.name {
-	font-family: 'Open Sans';
-	font-weight: bold;
+#name {
+	font: bold 1em 'Open Sans';
 	text-transform: capitalize;
 	color: #EDF2F4;
 	padding-left: 15px;
 }
 
-#game-name {
-	padding: 15px 20px 0;
-	font-family: 'Nexa Rust';
-	font-size: 1.3em;
-	letter-spacing: -1px;
-	color: #004f91;
+.game-name,
+.menu a {
+	color: #004F91;
 }
 
-#viewers {
+.game-name:hover,
+.menu a:hover {
+	color: #249CDE;
+}
+
+.game-name {
+	padding: 10px 20px 0;
+	font: bold 1.2em/1.2em 'Kanit';
+	text-transform: uppercase;
+}
+
+#viewers, #date {
 	position: absolute;
-	bottom: 12px;
-	background: url(../img/viewers.png) no-repeat;
-	margin-left: 20px;
-	padding-left: 20px;
-	font-family: 'Nexa Rust';
-	font-size: 0.8em;
-	line-height: 15px;
+	bottom: 10px;
+	left: 120px;
+	font: 0.7em/15px 'Nexa Rust';
 	color: #878D8F;
 }
 
-/* Buttons */
+#viewers {
+	left: 0;
+	background: url(../img/viewers.png) no-repeat;
+	margin-left: 20px;
+	padding-left: 20px;
+}
 
+/********************* 
+ Sliding Menu & Filter 
+**********************/
+
+.menu, 
+.filter, 
+.container {
+  transform: translate(0, 0);
+  transition: all 0.25s ease;
+}
+
+.menu, 
+.filter {
+  position: fixed;
+  background-color: #EDF2F4;
+  width: 400px;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+/* Menu styling */
+.menu {
+	right: -400px;
+}
+
+.menu ul, 
+.filter ul {
+	padding: 60px 40px;
+}
+
+.menu ul li, 
+.filter ul li {
+	padding-bottom: 25px;
+}
+
+.menu a {
+	font: bold 1.2em 'Kanit';
+	text-transform: uppercase;
+}
+
+#menu-close,
+#filter-close {
+	display: none;
+}
+
+/* Filter styling*/
+.filter {
+	left: -400px;
+}
+.filter ul li {
+	font: bold 1em 'Kanit';
+	text-transform: uppercase;
+}
+input[type="checkbox"] {
+	float: right;
+  width:19px;
+  height:19px;
+}
+input[type="checkbox"]:checked {
+	background-color: white;
+}
+
+/*********** 
+ Buttons 
+************/
+
+button {
+	outline: none;
+}
+
+button,
 #filter-btn,
 #menu-btn,
 #load_more {
@@ -189,7 +282,7 @@ a {
 
 #filter-btn,
 #menu-btn {
-	margin: 60px 55px 0;
+	margin: 0 55px;
 }
 
 #filter-btn {
@@ -200,71 +293,37 @@ a {
 	float: right;
 }
 
-#load_more {
+#load-more {
 	display: block;
 	margin: 0 auto;
 	width: 100px;
 	height: 100px;
-	font-family: 'Nexa Rust';
-	font-size: 1.2em;
+	font: 1.2em 'Nexa Rust';
 	text-transform: uppercase;
 	letter-spacing: -1px;
 	color: #EDF2F4;
 	background-color: transparent;
 	border: 1px solid #8780b3;
 	border-radius: 50%;
-	outline: none;
+}
+/* Close Modal Button */
+#close-btn {
+	position: absolute;
+	top: -40px;
+	right: -40px;
+	background-color: transparent;
+	border: none;
 }
 
-/* Modal Window */
+/*********** 
+ Modal Window 
+************/
 
 #modal {
-	z-index: -100;
-	height: 100vh;
-	width: 100vw;
-	position: absolute;
-	opacity: 0;
-}
-
-.menu, 
-.filter {
-  display: block;
-  position: absolute;
-  height: auto;
-  background-color: #EDF2F4;
-  width: 400px;
-  height: 100vh;
-  z-index: 2;
-  
-}
-
-.menu {
-		right: 0;	
-    -webkit-transform: translate(100%, 0);
-    -moz-transform: translate(100%, 0);
-    transform: translate(100%, 0);
-    -webkit-transition: all 0.25s ease;
-    -moz-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-}
-
-.filter {
-	left: -400px;
-    -webkit-transform: translate(0, 0);
-    -moz-transform: translate(0, 0);
-    transform: translate(0, 0);
-    -webkit-transition: all 0.25s ease;
-    -moz-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-}
-
-.container {
-	-webkit-transform: translate(0, 0);
-  -moz-transform: translate(0, 0);
-  transform: translate(0, 0);
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  transition: all 0.25s ease;
+	width: 945px;
+	height: 700px;
+	position: relative;
+	margin: 100px auto 0;
 }
 
 iframe {
@@ -272,8 +331,43 @@ iframe {
 	height: 535px;
 	z-index: 100;
 	position: absolute;
-	top: 300px;
+	top: 0;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
+}
+
+#modal #profile-logo,
+#modal #name,
+#modal .game-name {
+	position: absolute;
+}
+#modal #profile-logo {
+	bottom: 70px;
+	right: 0;
+}
+#modal #name {
+	right: 80px;
+	bottom: 90px;
+}
+#modal .game-name {
+	width: 600px;
+	top: 570px;
+	left: 0;
+	padding: 0;
+	font-size: 3em;
+	line-height: 1em;
+	color: #000;
+}
+
+#modal #viewers,
+#modal #date {
+	margin-left: 0;
+	margin-bottom: 5px;
+	padding-left: 25px;
+	color: #FFF;
+}
+
+#modal #viewers {
+	background: url(../img/viewers2.png) no-repeat;
 }

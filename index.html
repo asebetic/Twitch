@@ -2,37 +2,44 @@
 <html>
 	<head>
 		<title>Twitch TV</title>
+		<link href='https://fonts.googleapis.com/css?family=Kanit:400,800' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 		<div class="filter">
-			<ol>
-
-			</ol>
+			<ul>
+				<li>Broadcast language english
+					<input id="broad_lang" type="checkbox" name="broad_lang" value="EN">
+				</li>
+				<li>Stream language english
+					<input id="stream_lang" type="checkbox" name="stream_lang" value="EN">
+				</li>
+				
+			</ul>
 		</div>
 		<div class="menu">
-			<ol>
-
-			</ol>
 		</div>
 		<div class="container">
 			<header>
 				<a id="filter-btn">
-					<img src="img/filter.png">
+					<img id="filter-img" src="img/filter.png">
+					<img id="filter-close" src="img/close-btn.png">
 				</a>
 				<a id="menu-btn">
-					<img src="img/menu-btn.png">
+					<img id="menu-img" src="img/menu-btn.png">
+					<img id="menu-close" src="img/close-btn.png">
 				</a>
-				<a href="#">
-					<img src="img/logo.png" id="logo" class="clearfix">	
+				<a id="logo" class="clearfix" href="http://localhost/twitch/">
+					<img src="img/logo.png">	
 				</a>
 			</header>
 			<main class="content">
 				<div class="row">
 					<a href="#"></a>
 				</div>
-				<button id="load_more">Load more</button>
+				<button id="load-more">Load more</button>
 	    </main>
+	    <div id="modal"></div>
 		</div> 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
