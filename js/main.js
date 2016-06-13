@@ -213,7 +213,7 @@ $(document).ready(function() {
   });
 
   $('#stream_lang').click(function() {
-      filterFunc('#filter-btn');
+
       if ($(this).is(":checked")) {
         $('#filter-btn').click();
         currentCheck = {language: 'en'};
