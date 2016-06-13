@@ -215,6 +215,7 @@ $(document).ready(function() {
   $('#stream_lang').click(function() {
 
       if ($(this).is(":checked")) {
+        
         $('#filter-btn').click();
         currentCheck = {language: 'en'};
         empty('.rows');
@@ -275,14 +276,7 @@ $(document).ready(function() {
 
       if ($('#stream_lang').is(":checked")) {
         currentCheck = {language: 'en'};
-if ($('#broad_lang').is(":checked")) {
-
-          broadLang = {broadcaster_language: 'en'};
-
-          $.extend(currentCheck, broadLang);
-          getStreams(currentCheck, broadLang);
-          return;
-        }
+      
         $.extend(broadLang, currentCheck);
         getStreams(broadLang, currentCheck);
         return;
