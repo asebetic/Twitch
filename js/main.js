@@ -45,6 +45,7 @@ $(document).ready(function() {
       return unique;
       };
 
+
       $.each(data.streams, function(index, element) {
 
         // Create new elements
@@ -71,10 +72,12 @@ $(document).ready(function() {
           'src': element.preview.medium
         });
 
+
         var gameName = $('<p>', {
           'id': element.channel.game,
           'class': 'game-name',
-          'html': element.channel.game
+          // ':' and '-' is not available in Nexa Rust font
+          'html': element.channel.game.replace(/:/g, '').replace(/-/g, ' ')
         });
 
         var viewers = $('<span>', {
@@ -170,7 +173,7 @@ $(document).ready(function() {
             $('#menu-btn').click();
             empty('.rows');
             getStreams(gm);
-            currentGame = element.channel.game;
+            currentGame = element.channel.game
             offsetValue = 9;
           }).appendTo(gameMenu);
         }
@@ -210,7 +213,7 @@ $(document).ready(function() {
   });
 
   $('#stream_lang').click(function() {
-      
+      filterFunc('#filter-btn');
       if ($(this).is(":checked")) {
         $('#filter-btn').click();
         currentCheck = {language: 'en'};
@@ -272,7 +275,14 @@ $(document).ready(function() {
 
       if ($('#stream_lang').is(":checked")) {
         currentCheck = {language: 'en'};
+if ($('#broad_lang').is(":checked")) {
 
+          broadLang = {broadcaster_language: 'en'};
+
+          $.extend(currentCheck, broadLang);
+          getStreams(currentCheck, broadLang);
+          return;
+        }
         $.extend(broadLang, currentCheck);
         getStreams(broadLang, currentCheck);
         return;
@@ -290,7 +300,8 @@ $(document).ready(function() {
         currentCheck = {language: 'en'};
         getStreams(currentCheck);
         return;
-      } else if ($('#stream_lang').is(":checked") && currentGame !== null) {
+      } 
+      else if ($('#stream_lang').is(":checked") && currentGame !== null) {
         $.extend(currentCheck, {game: currentGame});
         getStreams(currentCheck);
         return;
@@ -318,10 +329,13 @@ $(document).ready(function() {
         show('#menu-close');
         $('.menu').css('transform', 'translate(-400px, 0');
         $('.container').css('transform', 'translate(-400px, 0');
+        $('.container').css('background-color', 'rgba(0,0,0,0.3)');
         menu = false;
-      } else {
+      } 
+      else {
         $('.menu').css('transform', 'translate(0, 0');
         $('.container').css('transform', 'translate(0, 0');
+        $('.container').css('background-color', 'rgba(0,0,0,0)');
         show('#menu-img');
         hide('#menu-close');
         menu = true;
@@ -336,10 +350,13 @@ $(document).ready(function() {
         show('#filter-close');
         $('.filter').css('transform', 'translate(400px, 0');
         $('.container').css('transform', 'translate(400px, 0');  
+        $('.container').css('background-color', 'rgba(0,0,0,0.3)');
         menu = false;
-      } else {
+      } 
+      else {
         $('.filter').css('transform', 'translate(0, 0');
         $('.container').css('transform', 'translate(0, 0');
+        $('.container').css('background-color', 'rgba(0,0,0,0)');
         show('#filter-img');
         hide('#filter-close');        
         menu = true;

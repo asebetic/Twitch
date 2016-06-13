@@ -91,7 +91,7 @@ body {
 }
 
 p {
-	font-family: 'Open Sans';
+	font-family: 'Nexa Rust';
 }
 
 a {
@@ -184,7 +184,7 @@ header {
 
 .game-name {
 	padding: 10px 20px 0;
-	font: bold 1.2em/1.2em 'Kanit';
+	font: bold 1.2em/1.2em 'Nexa Rust';
 	text-transform: uppercase;
 }
 
@@ -276,7 +276,9 @@ button {
 
 button,
 #filter-btn,
-#menu-btn {
+#menu-btn,
+#stream_lang,
+#broad_lang {
 	cursor: pointer;
 } 
 
@@ -328,6 +330,7 @@ button,
 
 #modal {
 	display: none;
+	max-width: 100%;
 	width: 945px;
 	height: 700px;
 	position: relative;
@@ -335,6 +338,7 @@ button,
 }
 
 iframe {
+	max-width: 100%;
 	width: 945px;
 	height: 535px;
 	z-index: 100;
@@ -381,9 +385,7 @@ iframe {
 }
 
 @media only screen and (max-width: 1050px) { 
-	#modal {
-		width: 100%;
-	}
+
 	#close-btn {
 		right: 0;
 	}
