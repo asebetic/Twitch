@@ -133,14 +133,14 @@ header {
 	cursor: pointer;
 	background-color: white;
 	-webkit-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
-  box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 15px 5px rgba(0,0,0,0.2);
 }
 
 .col:hover {
 	-webkit-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
-  box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 15px 5px rgba(0,0,0,0.4);
 }
 
 .col img {
@@ -276,8 +276,7 @@ button {
 
 button,
 #filter-btn,
-#menu-btn,
-#load_more {
+#menu-btn {
 	cursor: pointer;
 } 
 
@@ -304,9 +303,16 @@ button,
 	letter-spacing: -1px;
 	color: #EDF2F4;
 	background-color: transparent;
-	border: 1px solid #8780b3;
+	border: 1px solid #8780B3;
 	border-radius: 50%;
 }
+
+#load-more:hover {
+	background-color: #EDF2F4;
+	color: #9B719F;
+	border: none;
+}
+
 /* Close Modal Button */
 #close-btn {
 	position: absolute;
@@ -321,6 +327,7 @@ button,
 ************/
 
 #modal {
+	display: none;
 	width: 945px;
 	height: 700px;
 	position: relative;
@@ -373,9 +380,18 @@ iframe {
 	background: url(../img/viewers2.png) no-repeat;
 }
 
+@media only screen and (max-width: 1050px) { 
+	#modal {
+		width: 100%;
+	}
+	#close-btn {
+		right: 0;
+	}
+}
+
 @media only screen and (max-width: 796px) {
 	.container {
-		padding: 60px 10px 0;
+		padding: 60px 10px 20px;
 	}
 	.content {
 		margin: 0 auto;
@@ -409,15 +425,45 @@ iframe {
 	}
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 630px) {
+	.rows {
+		margin-bottom: 20px;
+	}
 	#logo {
 		clear: none;
 		width: 60%;
 	}
-
+	#menu-btn,
+	#filter-btn {
+		margin: 0 10px;
+	}
+	#modal {
+		height: 550px;
+	}
+	iframe {
+		height: 400px;
+	}
+	#modal .game-name {
+		top: 420px;
+		width: 60%;
+	}
+	#modal #name {
+		bottom: 100px;
+	}
+	#modal #profile-logo {
+		bottom: 80px;
+	}
+	#modal #viewers,
+	#modal #date {
+		margin-bottom: 25px;
+	}
 }
 
 @media only screen and (max-width: 460px) {
+	.container {
+		padding-top: 30px;
+		transform: translate(0, 0);
+	}
 	header {
 		height: 60px;
 	}
@@ -429,9 +475,12 @@ iframe {
 		clear: none;
 		width: 60%;
 	}
-	#menu-btn,
-	#filter-btn {
-		margin: 0 10px;
+	#logo img {
+		height: 30px;
+	}
+	.filter,
+	.menu {
+		max-width: 100%;
 	}
 }
 
