@@ -364,7 +364,6 @@ iframe {
 	bottom: 90px;
 }
 #modal .game-name {
-	width: 600px;
 	top: 570px;
 	left: 0;
 	padding: 0;
@@ -424,7 +423,19 @@ iframe {
 		width: 100%;
 	}
 	#modal .game-name {
-		font-size: 2em;
+		font-size: 1.7em;
+	}
+	#modal #name {
+		left: 70px;
+		bottom: 40px;
+	}
+	#modal #profile-logo {
+		bottom: 20px;
+		left: 0;
+	}
+	#modal #viewers,
+	#modal #date {
+		margin-bottom: -45px;
 	}
 }
 
@@ -448,17 +459,19 @@ iframe {
 	}
 	#modal .game-name {
 		top: 420px;
-		width: 60%;
-	}
-	#modal #name {
-		bottom: 100px;
-	}
-	#modal #profile-logo {
-		bottom: 80px;
+		max-width: 100%;
 	}
 	#modal #viewers,
 	#modal #date {
-		margin-bottom: 25px;
+		margin-bottom: -45px;
+	}
+	#modal #name {
+		left: 70px;
+		bottom: 10px;
+	}
+	#modal #profile-logo {
+		bottom: -10px;
+		left: 0;
 	}
 }
 

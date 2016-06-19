@@ -77,7 +77,7 @@ $(document).ready(function() {
           'id': element.channel.game,
           'class': 'game-name',
           // ':' and '-' is not available in Nexa Rust font
-          'html': element.channel.game.replace(/:/g, '').replace(/-/g, ' ')
+          'html': element.channel.game ? element.channel.game.replace(/:/g, '').replace(/-/g, ' ') : 'No Title'
         });
 
         var viewers = $('<span>', {
@@ -156,9 +156,7 @@ $(document).ready(function() {
             'html': '<a href="#">' + element.channel.game + '</a>'
           }).click(function() {
             // Define parameter in new var
-            var gm = {
-              game: element.channel.game
-            }
+            var gm = {};
 
             if (currentCheck !== null) {
               $.extend(gm, currentCheck);
@@ -167,6 +165,10 @@ $(document).ready(function() {
             if (broadLang !== null) {
               $.extend(gm, broadLang);
             }
+
+            $.extend(gm, { 
+              game: element.channel.game
+            });
 
             // Remove other games and show 
             // only the one that is selected in menu
@@ -229,8 +231,6 @@ $(document).ready(function() {
           broadLang = {broadcaster_language: 'en'};
 
           $.extend(currentCheck, broadLang);
-          getStreams(currentCheck, broadLang);
-          return;
         }
 
         offsetValue = 9;
@@ -244,16 +244,20 @@ $(document).ready(function() {
         if ($('#broad_lang').is(":checked") && currentGame === null) {          
           broadLang = {broadcaster_language: 'en'};
           getStreams(broadLang);
+          offsetValue = 9;
           return;
         }
         else if ($('#broad_lang').is(":checked") && currentGame !== null) {
           $.extend(broadLang, {game: currentGame});
+          delete broadLang.language;
           getStreams(broadLang);
+          offsetValue = 9;
           return;
         }
 
         if (currentGame !== null) {
           getStreams({game: currentGame});
+          offsetValue = 9;
           return;
         }
 
@@ -266,8 +270,8 @@ $(document).ready(function() {
 
     if ($(this).is(":checked")) {
 
-      broadLang = {broadcaster_language: 'en'};
       $('#filter-btn').click();
+      broadLang = {broadcaster_language: 'en'};
       empty('.rows');
 
       if (currentGame !== null) {
@@ -275,11 +279,10 @@ $(document).ready(function() {
       }
 
       if ($('#stream_lang').is(":checked")) {
+        
         currentCheck = {language: 'en'};
       
         $.extend(broadLang, currentCheck);
-        getStreams(broadLang, currentCheck);
-        return;
       }
 
       offsetValue = 9;
@@ -293,16 +296,20 @@ $(document).ready(function() {
       if ($('#stream_lang').is(":checked") && currentGame === null) {
         currentCheck = {language: 'en'};
         getStreams(currentCheck);
+        offsetValue = 9;
         return;
       } 
       else if ($('#stream_lang').is(":checked") && currentGame !== null) {
+        currentCheck = {language: 'en'};
         $.extend(currentCheck, {game: currentGame});
         getStreams(currentCheck);
+        offsetValue = 9;
         return;
       }
 
       if (currentGame !== null) {
         getStreams({game: currentGame});
+        offsetValue = 9;
         return;
       }
 
